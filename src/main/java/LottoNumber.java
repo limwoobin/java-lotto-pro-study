@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 public class LottoNumber {
     private static final int MIN_NUMBER = 1;
@@ -24,6 +23,16 @@ public class LottoNumber {
         }
         Collections.sort(lottoNumbers);
         return lottoNumbers;
+    }
+
+    public static void isValidRangeNumber(List<Integer> lottoNumbers) {
+        long notValidNumberCount = lottoNumbers.stream()
+                .filter(number -> number < MIN_NUMBER || number > MAX_NUMBER)
+                .count();
+
+        if (notValidNumberCount > 0) {
+            throw new RuntimeException("유효하지 않은 숫자가 포함되어 있습니다.");
+        }
     }
 
     public List<Integer> getLottoNumbers() {
