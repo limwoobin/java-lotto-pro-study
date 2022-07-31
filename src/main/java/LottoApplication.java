@@ -10,8 +10,9 @@ public class LottoApplication {
 
         ResultView.printLottoGame(lottoGame.getLottos());
 
-        Lotto lastWinningLotto = InputView.inputLastWinningLottoNumbers();
-
+        Lotto winningLottoNumbers = InputView.inputLastWinningLottoNumbers();
+        LottoResult result = lottoGame.matchNumbers(winningLottoNumbers);
+        ResultView.printResult(result);
     }
 
 }

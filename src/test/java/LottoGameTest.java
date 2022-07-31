@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoGameTest {
@@ -12,5 +14,7 @@ public class LottoGameTest {
 
         assertThat(lottoGame.getLottos().size()).isEqualTo(5);
     }
+
+
 
 }

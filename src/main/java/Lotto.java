@@ -31,4 +31,16 @@ public class Lotto {
     public List<Integer> getLottoNumbers() {
         return lottoNumbers;
     }
+
+    public Reward matching(Lotto winningLotto) {
+        long matchedCount = lottoNumbers.stream()
+                .filter(number -> winningLotto.hasNumber(number))
+                .count();
+        return Reward.valueOfReward(matchedCount);
+    }
+
+    private boolean hasNumber(Integer number) {
+        return lottoNumbers.stream()
+                .anyMatch(winningNumber -> winningNumber.equals(number));
+    }
 }

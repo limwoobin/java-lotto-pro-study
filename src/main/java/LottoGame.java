@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoGame {
 
@@ -24,5 +25,13 @@ public class LottoGame {
     public void printLottoCount() {
         System.out.printf("%d개를 구매했습니다.", price.getLottoCount());
         System.out.println();
+    }
+
+    public LottoResult matchNumbers(Lotto winningLotto) {
+        List<LottoScore> lottoScores = lottos.stream()
+                .map(lotto -> new LottoScore(lotto, lotto.matching(winningLotto)))
+                .collect(Collectors.toList());
+
+        return new LottoResult(lottoScores, price);
     }
 }
