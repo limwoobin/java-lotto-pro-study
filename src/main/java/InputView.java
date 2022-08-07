@@ -18,8 +18,8 @@ public class InputView {
     }
 
     private static Lotto parseLotto(String[] numbers) {
-        List<Integer> lottoNumbers = Arrays.stream(numbers)
-                .map(number -> Integer.parseInt(number))
+        List<LottoNumber> lottoNumbers = Arrays.stream(numbers)
+                .map(number -> new LottoNumber(Integer.parseInt(number)))
                 .collect(Collectors.toList());
         return new Lotto(lottoNumbers);
     }

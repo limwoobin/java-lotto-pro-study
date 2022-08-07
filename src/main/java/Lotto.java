@@ -2,45 +2,40 @@ import java.util.List;
 
 public class Lotto {
 
-    private List<Integer> lottoNumbers;
+    private List<LottoNumber> lotto;
 
     public Lotto() {
         generateLotto();
     }
 
-    public Lotto(List<Integer> lottoNumbers) {
-        isValidLottoNumberSize(lottoNumbers);
-        isValidRangeNumber(lottoNumbers);
-        this.lottoNumbers = lottoNumbers;
+    public Lotto(List<LottoNumber> lotto) {
+        isValidLottoNumberSize(lotto);
+        this.lotto = lotto;
     }
 
-    private void isValidRangeNumber(List<Integer> lottoNumbers) {
-        LottoNumber.isValidRangeNumber(lottoNumbers);
-    }
-
-    private void isValidLottoNumberSize(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != 6) {
+    private void isValidLottoNumberSize(List<LottoNumber> lotto) {
+        if (this.lotto.size() != 6) {
             throw new RuntimeException("당첨 번호가 6자리가 아닙니다.");
         }
     }
 
     private void generateLotto() {
-        this.lottoNumbers = LottoNumber.autoGenerateLottoNumbers();
+        this.lotto = LottoNumbers.autoGenerateLottoNumbers();
     }
 
-    public List<Integer> getLottoNumbers() {
-        return lottoNumbers;
+    public List<LottoNumber> getLotto() {
+        return lotto;
     }
 
     public Reward matching(Lotto winningLotto) {
-        long matchedCount = lottoNumbers.stream()
+        long matchedCount = lotto.stream()
                 .filter(number -> winningLotto.hasNumber(number))
                 .count();
         return Reward.valueOfReward(matchedCount);
     }
 
-    private boolean hasNumber(Integer number) {
-        return lottoNumbers.stream()
+    private boolean hasNumber(LottoNumber number) {
+        return lotto.stream()
                 .anyMatch(winningNumber -> winningNumber.equals(number));
     }
 }

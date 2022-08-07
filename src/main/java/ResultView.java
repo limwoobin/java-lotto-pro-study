@@ -1,13 +1,21 @@
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ResultView {
     public static void printLottoGame(List<Lotto> lottoGame) {
         for (Lotto lotto: lottoGame) {
-            System.out.println(lotto.getLottoNumbers());
+            printLotto(lotto);
+
         }
     }
 
+    private static void printLotto(Lotto lotto) {
+        List<Integer> parseIntegerLotto = lotto.getLotto().stream()
+                .map(lottoNumber -> lottoNumber.getNumber())
+                .collect(Collectors.toList());
+        System.out.println(parseIntegerLotto);
+    }
 
 
     public static void printResult(LottoResult lottoResult) {
