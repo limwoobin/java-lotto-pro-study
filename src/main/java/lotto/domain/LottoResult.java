@@ -1,3 +1,7 @@
+package lotto.domain;
+
+import lotto.Reward;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -7,27 +11,20 @@ import java.util.stream.Collectors;
 public class LottoResult {
 
     private final List<LottoScore> lottoScores;
-    private final Price price;
+    private long winningAmount;
     private Map<Reward, Long> countOfScore;
 
     public LottoResult(List<LottoScore> lottoScores, Price price) {
         this.lottoScores = lottoScores;
-        this.price = price;
         this.result();
     }
 
     private void result() {
         countOfScore = lottoScores.stream()
-               // .filter(lottoScore -> lottoScore.isNotZeroReward() )
                 .collect(Collectors.groupingBy(LottoScore::getReward, TreeMap::new,Collectors.counting()));
-    }
 
-    public long winningRate() {
-
-        long winningAmount = countOfScore.entrySet().stream()
+        winningAmount = countOfScore.entrySet().stream()
                 .mapToLong(lotto -> Reward.amountOfReward(lotto.getKey()) * lotto.getValue() ).sum() ;
-
-        return price.getWinningRate(winningAmount);
     }
 
     public long getCount(Reward reward) {
@@ -45,5 +42,9 @@ public class LottoResult {
             results.put(reward, getCount(reward));
         }
         return results;
+    }
+
+    public long getWinningAmount() {
+        return this.winningAmount;
     }
 }

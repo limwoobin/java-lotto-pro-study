@@ -1,3 +1,5 @@
+package lotto;
+
 import java.util.Arrays;
 
 public enum Reward {

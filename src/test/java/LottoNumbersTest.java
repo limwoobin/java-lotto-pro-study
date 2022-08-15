@@ -1,3 +1,5 @@
+import lotto.domain.LottoNumber;
+import lotto.domain.LottoNumbers;
 import org.junit.jupiter.api.Test;
 
 

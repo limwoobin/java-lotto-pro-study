@@ -1,3 +1,7 @@
+package lotto.domain;
+
+import lotto.Reward;
+
 public class LottoScore {
     private final Lotto lotto;
     private final Reward reward;

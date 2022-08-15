@@ -1,3 +1,7 @@
+package lotto.domain;
+
+import lotto.Reward;
+
 import java.util.List;
 
 public class Lotto {
@@ -9,14 +13,22 @@ public class Lotto {
     }
 
     public Lotto(List<LottoNumber> lotto) {
-        isValidLottoNumberSize(lotto);
         this.lotto = lotto;
+        isValidLottoNumber();
+
     }
 
-    private void isValidLottoNumberSize(List<LottoNumber> lotto) {
-        if (this.lotto.size() != 6) {
+    private void isValidLottoNumber() {
+        if (lotto.size() != 6) {
             throw new RuntimeException("당첨 번호가 6자리가 아닙니다.");
         }
+        if (hasDupulicationNumber()) {
+            throw new RuntimeException("중복된 숫자가 포함되어 있습니다.");
+        }
+    }
+
+    private boolean hasDupulicationNumber() {
+        return LottoNumbers.hasDupulicationNumber(lotto);
     }
 
     private void generateLotto() {

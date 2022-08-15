@@ -1,3 +1,5 @@
+package lotto.domain;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -27,6 +29,14 @@ public class LottoNumbers {
         return lotto.stream()
                 .sorted(Comparator.comparing(LottoNumber::getNumber))
                 .collect(Collectors.toList());
+    }
+
+    public static boolean hasDupulicationNumber(List<LottoNumber> lotto) {
+        long aaa = lotto.stream()
+                .distinct()
+                .count();
+
+        return aaa < LOTTO_NUMBER_COUNT;
     }
 
     public List<LottoNumber> getLottoNumbers() {

@@ -1,3 +1,5 @@
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +25,18 @@ public class LottoTest {
 
         assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
             List<LottoNumber> 입력당첨번호 = Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5));
+
+            Lotto 당첨번호 = new Lotto(입력당첨번호);
+
+        });
+    }
+
+    @Test
+    @DisplayName("당첨번호 테스트 - 중복 숫자 에러")
+    void 당첨번호_입력_test4() {
+
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
+            List<LottoNumber> 입력당첨번호 = Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(5));
 
             Lotto 당첨번호 = new Lotto(입력당첨번호);
 

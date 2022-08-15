@@ -1,3 +1,11 @@
+package lotto;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
+import lotto.domain.LottoResult;
+import lotto.domain.Price;
+import lotto.view.InputView;
+import lotto.view.ResultView;
 
 public class LottoApplication {
     public static void main(String[] args) {
@@ -5,14 +13,16 @@ public class LottoApplication {
 
         LottoGame lottoGame = new LottoGame(price);
 
-        //입력한 돈으로 살 수 있는 금액
         lottoGame.printLottoCount();
 
         ResultView.printLottoGame(lottoGame.getLottos());
 
         Lotto winningLottoNumbers = InputView.inputLastWinningLottoNumbers();
+        ResultView.printWinningLotto(winningLottoNumbers);
+
         LottoResult result = lottoGame.matchNumbers(winningLottoNumbers);
-        ResultView.printResult(result);
+        long winningRate = price.getWinningRate(result.getWinningAmount());
+        ResultView.printResult(result, winningRate);
     }
 
 }
